@@ -1,0 +1,16 @@
+# /etc/systemd/system/house.mqttlogger.service
+[Unit]
+Description=MQTTLogger
+After=mosquitto.service
+
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/bin/python3 /home/pi/regler/mqttlogger.py
+SendSIGKILL=no
+RestartForceExitStatus=100
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
