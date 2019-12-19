@@ -53,10 +53,9 @@ SUBSCRIPTIONS = [
 def pinStateFromMQTTState(state):
     if state == '0':
         return OFF
-    elif state == '1':
+    if state == '1':
         return ON
-    else:
-        return UNKNOWN
+    return UNKNOWN
 
 
 @asyncio.coroutine

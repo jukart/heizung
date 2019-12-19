@@ -120,11 +120,6 @@ def run(arguments):
         )
         yield from C.connect(arguments['--uri'])
         yield from C.subscribe([(s[0], QOS_2) for s in SUBSCRIPTIONS])
-        C1 = MQTTClient(
-            BASE_TOPIC + "/regler1",
-            config=CLIENT_CONFIG,
-        )
-        yield from C1.connect(arguments['--uri'])
         try:
             push_state['heat_pump'].setValue(state['heat_pump'])
             yield from C.publish(*push_state['heat_pump'].publish())
